@@ -13,7 +13,9 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: 'dist',
     assetsDir: 'assets',
+    copyPublicDir: true,
     rollupOptions: {
       input: {
         main: './index.html',
@@ -24,15 +26,24 @@ export default defineConfig({
           
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
-          
-          if (/pdf/i.test(ext)) {
-            return `pdf/[name][extname]`;
+
+          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(ext)) {
+            return 'assets/images/[name]-[hash][extname]';
           }
           
+          if (/\.(pdf|doc|docx|xls|xlsx|txt)$/i.test(ext)) {
+            return 'assets/documents/[name]-[hash][extname]';
+          }
+          
+          if (/\.(woff2?|eot|ttf|otf)$/i.test(ext)) {
+            return 'assets/fonts/[name]-[hash][extname]';
+          }
+
           return 'assets/[name]-[hash][extname]';
         },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
-    copyPublicDir: true,
   },
 });
