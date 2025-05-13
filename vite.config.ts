@@ -20,9 +20,13 @@ export default defineConfig({
       },
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.pdf')) {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          
+          if (ext === 'pdf') {
             return 'pdf/training/[name][extname]';
           }
+          
           return 'assets/[name]-[hash][extname]';
         },
       },
