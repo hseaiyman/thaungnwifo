@@ -23,8 +23,8 @@ export default defineConfig({
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
           
-          if (ext === 'pdf') {
-            return 'pdf/training/[name][extname]';
+          if (/pdf/i.test(ext)) {
+            return `pdf/[name][extname]`;
           }
           
           return 'assets/[name]-[hash][extname]';
