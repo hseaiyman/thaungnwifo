@@ -13,4 +13,20 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  build: {
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.pdf')) {
+            return 'pdf/training/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
+  },
 });
