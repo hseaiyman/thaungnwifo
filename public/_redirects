@@ -1,3 +1,6 @@
 /*    /index.html   200
 /pdf/*    /pdf/:splat   200
 /assets/*    /assets/:splat   200
+
+# Handle PDF files in src directory
+/src/pdf/*    /pdf/:splat   200
