@@ -20,6 +20,8 @@ export default defineConfig({
       },
       output: {
         assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+          
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
           
